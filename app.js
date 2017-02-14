@@ -32,6 +32,13 @@ con.query('SELECT c.prix, c.type FROM chambre as c LEFT JOIN hotel as h ON h.num
     console.log(rows);
 });
 
+con.query('SELECT DISTINCT h.nomHote FROM hote as h LEFT JOIN reservation as r ON h.numHote = r.numHote LEFT JOIN hotel as hl ON hl.numHotel = r.numHotel WHERE r.dateDebut < CURDATE() AND r.dateFin > CURDATE() AND hl.nomHotel = "Hôtel du Gouverneur";',function(err,rows){
+    if(err) throw err;
+
+    console.log('\nEnumérer les hôtes qui résident actuellement à l\'hôtel le Gouverneur :\n');
+    console.log(rows);
+});
+
 con.end(function(err) {
     if(err) throw err;
 });
