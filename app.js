@@ -85,7 +85,17 @@ con.query('select DISTINCT chambre.numChambre, chambre.type, chambre.prix, hote.
 });
 
 // Question j)
-//todo
+con.query('select h.numHote, h.nomHote, h.adresseHote  from hote as h'
++' JOIN reservation ON reservation.numHote = h.numHote'
++' JOIN chambre ON chambre.numChambre = reservation.numChambre'
++' JOIN hotel ON hotel.numHotel = chambre.numHotel'
++' where hotel.nomHotel = "Hôtel du Gouverneur"'
++' AND CURDATE() BETWEEN reservation.dateDebut AND reservation.dateFin',function(err,rows){
+    if(err) throw err;
+
+    console.log('\nEnumérer les détails d\'hote (numHote, nomHote, addresseHote)) de tous les hotes qui resident a l\'hotel gouverneur:\n');
+    console.log(rows);
+});
 
 con.end(function(err) {
     if(err) throw err;
