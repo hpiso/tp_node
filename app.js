@@ -72,7 +72,17 @@ con.query('SELECT DISTINCT h.nomHote FROM hote as h LEFT JOIN reservation as r O
 });
 
 // Question i)
-//todo
+con.query('select DISTINCT chambre.numChambre, chambre.type, chambre.prix, hote.nomHote, reservation.dateDebut, reservation.dateFin from chambre'
+    +' JOIN hotel ON hotel.numHotel = chambre.numHotel'
+    +' JOIN reservation ON reservation.numChambre = chambre.numChambre'
+    +' JOIN hote ON hote.numHote = reservation.numHote'
+    +' where hotel.nomHotel = "Hôtel du Gouverneur"'
+    +' AND CURDATE() BETWEEN reservation.dateDebut AND reservation.dateFin',function(err,rows){
+    if(err) throw err;
+
+    console.log('\nEnumérer les détails de toutes les chambres de l\'hotel gouverneur, y compris le nom des hotes qui y resident, si les chambres sont occupées :\n');
+    console.log(rows);
+});
 
 // Question j)
 //todo
