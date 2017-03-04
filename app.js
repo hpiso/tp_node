@@ -13,7 +13,12 @@ con.query('SELECT distinct numHotel FROM chambre where prix > 50',function(err,r
 });
 
 // Question b)
-//todo
+con.query('select h.numHotel from hotel as h JOIN chambre ON chambre.numHotel = h.numHotel',function(err,rows){
+    if(err) throw err;
+
+    console.log('\nQuestion b):\n');
+    console.log(rows);
+});
 
 // Question c)
 con.query('SELECT distinct nomHotel FROM hotel LEFT JOIN chambre ON chambre.numHotel = hotel.numHotel where prix > 50',function(err,rows){
