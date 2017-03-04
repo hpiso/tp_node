@@ -71,6 +71,12 @@ con.query('SELECT DISTINCT h.nomHote FROM hote as h LEFT JOIN reservation as r O
     console.log(rows);
 });
 
+// Question i)
+//todo
+
+// Question j)
+//todo
+
 con.end(function(err) {
     if(err) throw err;
 });
