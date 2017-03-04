@@ -5,7 +5,7 @@ var dbConfig = require('./config/database');
 var con = mysql.createConnection(dbConfig);
 
 // Question a)
-con.query('SELECT numHotel FROM chambre where prix > 50',function(err,rows){
+con.query('SELECT distinct numHotel FROM chambre where prix > 50',function(err,rows){
     if(err) throw err;
 
     console.log('\nQuestion a):\n');
@@ -16,7 +16,12 @@ con.query('SELECT numHotel FROM chambre where prix > 50',function(err,rows){
 //todo
 
 // Question c)
-//todo
+con.query('SELECT distinct nomHotel FROM hotel LEFT JOIN chambre ON chambre.numHotel = hotel.numHotel where prix > 50',function(err,rows){
+    if(err) throw err;
+
+    console.log('\nQuestion c):\n');
+    console.log(rows);
+});
 
 // Question d)
 con.query('SELECT * FROM hotel',function(err,rows){
